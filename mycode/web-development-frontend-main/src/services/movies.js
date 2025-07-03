@@ -1,47 +1,45 @@
 // Import the axios library to handle HTTP requests
 import axios from "axios";
 
-// Base URL pointing to your deployed backend on Render
-const BASE_URL = "https://mern-stack-code-college.onrender.com/api/v1/movies";
 
 // Define a service class to manage all movie-related API calls
 class MovieDataService {
   
   // Get a list of movies, optionally specifying which page of results to fetch
   getAll(page = 0) {
-    return axios.get(`${BASE_URL}?page=${page}`);
+    return axios.get(`https://mern-backend-bvcr.onrender.com/api/v1/movies?page=${page}`);
   }
 
   // Retrieve a specific movie by its unique ID
   get(id) {
-    return axios.get(`${BASE_URL}/id/${id}`);
+    return axios.get(`https://mern-backend-bvcr.onrender.com/api/v1/movies/id/${id}`);
   }
 
   // Search for movies by a query (e.g., title or rating), with optional filters
   find(query, by = "title", page = 0, rating) {
-    return axios.get(`${BASE_URL}?${by}=${query}&page=${page}&rating=${rating}`);
+    return axios.get(`https://mern-backend-bvcr.onrender.com/api/v1/movies?${by}=${query}&page=${page}&rating=${rating}`);
   }
 
   // Send a new review to the backend to be saved
   createReview(data) {
-    return axios.post(`${BASE_URL}/review`, data);
+    return axios.post(`https://mern-backend-bvcr.onrender.com/api/v1/movies/review`, data);
   }
 
   // Update an existing review with new data
   updateReview(data) {
-    return axios.put(`${BASE_URL}/review`, data);
+    return axios.put(`https://mern-backend-bvcr.onrender.com/api/v1/movies/review`, data);
   }
 
   // Delete a review by providing the review ID and the user ID for verification
   deleteReview(id, userId) {
-    return axios.delete(`${BASE_URL}/review`, {
+    return axios.delete(`https://mern-backend-bvcr.onrender.com/api/v1/movies/review`, {
       data: { review_id: id, user_id: userId }
     });
   }
 
   // Fetch a list of all available movie ratings (e.g., PG, G, R)
   getRatings() {
-    return axios.get(`${BASE_URL}/ratings`);
+    return axios.get(`https://mern-backend-bvcr.onrender.com/api/v1/movies/ratings`);
   }
 }
 
